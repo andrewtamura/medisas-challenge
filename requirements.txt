@@ -1,0 +1,3 @@
+pymongo==2.7.1
+twitter==1.14.3
+

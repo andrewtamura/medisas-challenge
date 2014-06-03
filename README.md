@@ -1,9 +1,9 @@
 Medisas Code Challenge
 ======================
 
-'''
-Use Twitter's streaming API to show the top 10 retweeted tweets in a rolling window of time, where the window's start is n minutes ago (where n is defined by the user) and the window's end is the current time.
-'''
+
+  Use Twitter's streaming API to show the top 10 retweeted tweets in a rolling window of time, where the window's start   is n minutes ago (where n is defined by the user) and the window's end is the current time.
+
 
 #Requirements
 

@@ -7,9 +7,9 @@ Medisas Code Challenge
 
 #Requirements
 
-python 2.x
-virtualenv
-mongodb (default settings)
+* python 2.x
+* virtualenv
+* mongodb (default settings)
 
 #Setup Part 1: Twitter API Credentials
 

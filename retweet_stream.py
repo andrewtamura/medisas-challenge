@@ -40,17 +40,21 @@ def scrape_twitter():
     collection = db.retweets
 
     for tweet in samples:
-        if tweet['retweet_count'] > 0:
-            #save to DB because it has been retweeted atleast once
-            created_at = datetime.datetime.strptime(tweet['created_at'],
-                '%a %b %d %X +0000 %Y')
-            text = tweet['text']
-            retweet_count = tweet['retweet_count']
+        try:
+            if tweet['retweeted_status']:
+                tweet = tweet['retweeted_status']
+                #save to DB because it has been retweeted atleast once
+                created_at = datetime.datetime.strptime(tweet['created_at'],
+                    '%a %b %d %X +0000 %Y')
+                text = tweet['text']
+                retweet_count = tweet['retweet_count']
+                id = tweet['id']
+                data = {'id':id, 'text': text, 'retweet_count': retweet_count,
+                    'created_at': created_at}
+                collection.update({'id': id}, data, upsert=True)
+        except KeyError:
+            pass
 
-            data = {'text': text, 'retweet_count': retweet_count,
-                'created_at': created_at}
-
-            collection.insert(data)
 
 if __name__ == '__main__':
     scraper = Process(target=scrape_twitter)
@@ -63,6 +67,7 @@ if __name__ == '__main__':
         try:
             mins_ago = int(num)
             print_top_retweets(mins_ago)
+            print '\n'
         except:
             pass
 
